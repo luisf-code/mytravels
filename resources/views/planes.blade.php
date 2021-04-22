@@ -23,20 +23,44 @@
             </div>
             @endforeach
         </div>
-    </div> 
+    </div>
     <br>
-    <h2>Plus</h2>
-    <h6>Agranda tu plan</h6>
+    <br>
+    <h3>Recorridos</h3>
+    <h6>Escoge el recorrido que más te guste</h6>
+    <div>
+        <p></p>
+        <div class="row">
+            @foreach($queryDA AS $qDA)
+                <div class="col-3">
+                    <div class="card mt-4" style="width: 18rem;" id="recorrido">
+                        <img src="../../.././img/destino_alojamiento.jpeg" class="card-img-top" alt="recorridos turisicos">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $qDA -> titulo }}</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content to build on the card title and make up the bulk of the card's.</p>
+                            <p>Desde</p>
+                            <p>{{ $qDA -> valorCU }}</p>
+                            <p>Por persona</p>    
+                            <a href="#" class="btn btn-info">Ver recorrido</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+    <br>
+    <h4>Plus</h4>
+    <h7>Agranda tu plan</h7>
     <div class="row">
         @foreach($adicional AS $a)
             <div class="col-sm-6" style="width: 20rem;">
                 <div class="card text-center">
-                <img src="{{ $a[0] }}" class="card-img-top" alt="plus">
-                <div class="card-body">
-                    <h5 class="card-title">{{$a[1]}}</h5>
-                    <p class="card-text">{{$a[2]}}</p>
-                    <a href="#" class="btn btn-info">Agregar plus</a>
-                </div>
+                    <img src="{{ $a[0] }}" class="card-img-top" alt="plus">
+                    <div class="card-body">
+                        <h5 class="card-title">{{$a[1]}}</h5>
+                        <p class="card-text">{{$a[2]}}</p>
+                        <a href="#" class="btn btn-secondary">Agregar plus</a>
+                    </div>
                 </div>
             </div>
         @endforeach

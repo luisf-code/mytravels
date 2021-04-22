@@ -31,6 +31,7 @@ class planescontroller extends Controller
     public function PlanesController(){
 
         $datos['query'] = destinos::get();
+        $datos['queryDA'] = destinos_alojamientos::get();
         
         $datos["planes"] = [
             ["../../.././img/p1.jpeg", "Alojamiento con alimentacion", "COP 1.292.770"],
@@ -45,10 +46,10 @@ class planescontroller extends Controller
         return view("planes", $datos);
     }
 
-    public function PresupuestoController(){
-        $datos['queryDA'] = destinos_alojamientos::get();
-        return view("presupuesto", $datos);
-
+    public function PresupuestoController(Request $request)
+    {
+        $datos['queryDA'] = destinos_alojamientos::where('valorCU','<',$request -> dinero) -> get();
+        return view("presupuesto", $datos);              
     }
 }
 

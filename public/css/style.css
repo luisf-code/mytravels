@@ -131,6 +131,11 @@
     margin-bottom: 1em;
 }
 
+#recorrido{
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 15);
+    margin-bottom: 1em;
+}
+
 /* buscador */
 #form {
     background-color: var(--color-primary);
