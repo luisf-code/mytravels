@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Sitio;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\destinos;
 use App\Models\destinos_alojamientos;
 use App\Models\tipo_alojamientos;
+use App\Models\recorridos;
+use App\Models\reserva;
 
 class planescontroller extends Controller
 {
@@ -32,6 +35,7 @@ class planescontroller extends Controller
 
         $datos['query'] = destinos::get();
         $datos['queryDA'] = destinos_alojamientos::get();
+        $datos['queryR'] = recorridos::get();
         
         $datos["planes"] = [
             ["../../.././img/p1.jpeg", "Alojamiento con alimentacion", "COP 1.292.770"],
@@ -48,9 +52,39 @@ class planescontroller extends Controller
 
     public function PresupuestoController(Request $request)
     {
-        $datos['queryDA'] = destinos_alojamientos::where('valorCU','<',$request -> dinero) -> get();
-        return view("presupuesto", $datos);              
+        // $datos['queryDA'] = destinos_alojamientos::where('valorCU','<',$request -> dinero) -> get();
+        // return view("presupuesto", $datos);              
+        if(is_numeric($request -> dinero)){
+            $datos['queryDA'] = destinos_alojamientos::where('valorCU','<',$request -> dinero) -> get();
+            return view("presupuesto", $datos); 
+        }else{
+            return view("error");
+        }
+    }
+
+    // public function show(recorridos $recorridos){
+    //     return view("show", compact('recorridos'));
+    // }
+
+    public function show($recorridos){
+        $query = DB::table( 'recorridos' ) 
+                -> select ( 'id', 'titulo', 'descripcion', 'precio' )
+                -> where ( 'id', '=', $recorridos )
+                -> get();
+        return view("show", compact('query'));
+    }
+
+    public function store(Request $request)
+    {
+        $query = new reserva();
+        $query -> nombre = $request ->TxtNombre;
+        $query -> apellido = $request ->TxtApellido;
+        $query -> documento = $request ->TxtDocumento;
+        $query -> cant_personas = $request ->TxtCant_personas;
+        $query -> plus = $request ->TxtPlus;
+        $query -> valorF = $request ->TxtValorF;
+        $query -> save();
+        
+        return redirect('/planes');
     }
 }
-
-

@@ -2,6 +2,13 @@
 @section ("content")
 
 <div class="container">
+
+    @if (session('msg'))
+    <div class="alert {{ session('class') }} mt-0.1 mb-4">
+        {{ session('msg') }}
+    </div>
+    @endif
+
     <h2>Planes</h2>
     <h5>Descubre tu plan ideal</h5>
     <div>
@@ -24,7 +31,7 @@
             @endforeach
         </div>
     </div>
-    <br>
+    <!-- <br>
     <br>
     <h3>Recorridos</h3>
     <h6>Escoge el recorrido que más te guste</h6>
@@ -47,7 +54,27 @@
                 </div>
             @endforeach
         </div>
+    </div> -->
+
+    <br>
+    <div>
+        <h4>Estos son nuestros recorridos</h4>
+        <div class="container__grid">
+            @foreach($queryR AS $qR)
+                <div class="item__grid ">
+                    <div class="recorrido-img">
+                        <img src="../../.././img/show.jpeg" alt="recorrido">
+                    </div>
+                    <div class="recorridos mt-2">
+                        <h5><strong><i>{{ $qR -> id }}</i> {{ $qR -> titulo }}</h5>
+                        <h5><strong>${{ $qR -> precio }}</strong></h5>
+                        <a href="{{ url('planes/'. $qR -> id) }}" class="btn btn-success mb-2">Ver más</strong></a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
+
     <br>
     <h4>Plus</h4>
     <h7>Agranda tu plan</h7>

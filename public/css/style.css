@@ -164,3 +164,29 @@
     border: none;
     border-radius: 10px;
 }
+
+/*Recorridos*/
+.recorridos a {
+    text-decoration: none;
+}
+.recorrido-img{
+    margin-top: 3%;
+}
+
+.show h2{
+    text-align: center;
+}
+
+.show h2 span{
+    font-weight: 900;
+    color:  var(--color-secondary);
+}
+
+.img-reco{
+    text-align: center;
+}
+
+.pinta{
+    font-weight: 900;
+    color:  var(--color-secondary);
+}
