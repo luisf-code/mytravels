@@ -40,8 +40,10 @@ class crudcontroller extends Controller
      */
     public function store(Request $request)
     {
+        $url = $this -> getUrl( $request ->txtdestinos );
         $query = new destinos();
         $query -> titulo = $request ->txtdestinos;
+        $query -> url = $url;
         $query -> save();
         
         return redirect('/crud')->with(['msg' => 'Registro creado correctamente', 'class' => 'alert-success']);
@@ -66,7 +68,8 @@ class crudcontroller extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['query'] = destinos::findOrFail( $id );
+        return view('crud.actualizar', $data);
     }
 
     /**
@@ -78,7 +81,13 @@ class crudcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $url = $this -> getUrl( $request ->txtdestinos );
+        $query = destinos::find( $id );
+        $query -> titulo = $request ->txtdestinos;
+        $query -> url = $url;
+        $query -> update();  
+        
+        return redirect('/crud')->with(['msg' => 'Registro actualizado correctamente', 'class' => 'alert-success']);
     }
 
     /**
@@ -101,6 +110,22 @@ class crudcontroller extends Controller
             //return redirect('/crud')->with(['msg' => 'Ha ocurrido un error al eliminar el registro, inténtelo de nuevo '.$ex ->getMessage(), 'class' => 'alert-danger']); --> muestra la ubicación del error
         }
         
+    }
+
+    private static function getUrl($str = '')
+    {
+        $buscar = 'áéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛäëïöüÄËÏÖÜñÑÜü ';
+        $cambiar = 'aeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiounnuu-';
+        $patron = '([^A-Za-z0-9-.])';
+
+        $url_titulo = trim($str);
+        $url_titulo = strtr(utf8_decode($url_titulo), utf8_decode($buscar), utf8_decode($cambiar));
+        $url_titulo = preg_replace(utf8_decode($patron), "", utf8_decode($url_titulo));
+        $url_titulo = preg_replace('/--/', '-', $url_titulo);
+        $url_titulo = preg_replace('/---/', '-', $url_titulo);
+        $url_titulo = strtolower($url_titulo);
+
+        return $url_titulo;
     }
 
     public function numerico ( $url = 0)
