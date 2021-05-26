@@ -12,6 +12,30 @@
     <h2>Planes</h2>
     <h5>Descubre tu plan ideal</h5>
     <div>
+        <div class="row">
+                @foreach($queryDA AS $p)
+                <div class="col-3">
+                    <div class="card mt-3" style="width: 18rem;">
+                        <img src="../../.././img/p1.jpeg" class="card-img-top" alt="planes turisicos">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $p -> titulo }}</h5>
+                            <!-- <p class="card-text">{{ $p -> descripcion }}</p> -->
+                            <p>Desde</p>
+                            <p>{{ $p -> valorCU }}</p>
+                            <p>Por persona</p>
+                            <a href="{{ url('planes/'. $p -> id) }}" class="btn btn-primary">Ver plan</a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+        </div>
+    </div>
+
+
+
+
+
+    <!-- <div>
         <p></p>
         <div class="row">
             @foreach($planes AS $p)
@@ -23,14 +47,14 @@
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content to build on the card title and make up the bulk of the card's.</p>
                         <p>Desde</p>
                         <p>{{$p[2]}}</p>
-                        <p>Por persona</p>    
+                        <p>Por persona</p>
                         <a href="#" class="btn btn-primary">Ver plan</a>
                     </div>
                 </div>
             </div>
             @endforeach
         </div>
-    </div>
+    </div> -->
     <!-- <br>
     <br>
     <h3>Recorridos</h3>
@@ -47,7 +71,7 @@
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content to build on the card title and make up the bulk of the card's.</p>
                             <p>Desde</p>
                             <p>{{ $qDA -> valorCU }}</p>
-                            <p>Por persona</p>    
+                            <p>Por persona</p>
                             <a href="#" class="btn btn-info">Ver recorrido</a>
                         </div>
                     </div>
@@ -58,6 +82,7 @@
 
     <br>
     <div>
+        <h3>Tours</h3>
         <h4>Estos son nuestros recorridos</h4>
         <div class="container__grid">
             @foreach($queryR AS $qR)
@@ -68,7 +93,7 @@
                     <div class="recorridos mt-2">
                         <h5><strong><i>{{ $qR -> id }}</i> {{ $qR -> titulo }}</h5>
                         <h5><strong>${{ $qR -> precio }}</strong></h5>
-                        <a href="{{ url('planes/'. $qR -> id) }}" class="btn btn-success mb-2">Ver más</strong></a>
+                        <a href="{{ url('planes/tours/'. $qR -> id) }}" class="btn btn-success mb-2">Ver más</strong></a>
                     </div>
                 </div>
             @endforeach
