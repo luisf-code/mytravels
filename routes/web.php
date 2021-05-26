@@ -31,13 +31,15 @@ Route::resource('/crud','App\Http\Controllers\Crud\crudcontroller');
 Route::post('/presupuesto','App\Http\Controllers\Sitio\planescontroller@PresupuestoController') -> where(['dinero' => '[0-9]+']);
 
 Route::get('/crud/numerico/{url}','App\Http\Controllers\Crud\crudcontroller@numerico') -> where(['url' => '[0-9]+']); //url es dinamica, le dije que solo recibe valores númericos ahí con ese where
-//Route::get('/crud/numerico/{url}/{url2}','App\Http\Controllers\Crud\crudcontroller@numerico') -> where(['url' => '[0-9]+','url2' => '[0-9]+']); -> para varias variables dinamicas 
+//Route::get('/crud/numerico/{url}/{url2}','App\Http\Controllers\Crud\crudcontroller@numerico') -> where(['url' => '[0-9]+','url2' => '[0-9]+']); -> para varias variables dinamicas
 
 // Route::get('planes/{recorridos}',[planescontroller::class, "show"])->name('planes.show');
 
-Route::get('planes/{recorridos}','App\Http\Controllers\Sitio\planescontroller@show');
+Route::get('planes/tours/{recorridos}','App\Http\Controllers\Sitio\planescontroller@show');
+Route::post('/planes/tours/show','App\Http\Controllers\Sitio\planescontroller@storeTours');
 
-Route::post('/planes/show','App\Http\Controllers\Sitio\planescontroller@store');
+Route::get('planes/{recorridos}','App\Http\Controllers\Sitio\planescontroller@showPlanes');
+Route::post('/planes/show','App\Http\Controllers\Sitio\planescontroller@storePlanes');
 
 Route::get('/encrypt','App\Http\Controllers\Crud\crudcontroller@encrypt1');
 Route::get('/decrypt','App\Http\Controllers\Crud\crudcontroller@decrypt1');
