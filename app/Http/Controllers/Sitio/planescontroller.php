@@ -55,8 +55,6 @@ class planescontroller extends Controller
 
     public function PresupuestoController(Request $request)
     {
-        // $datos['queryDA'] = destinos_alojamientos::where('valorCU','<',$request -> dinero) -> get();
-        // return view("presupuesto", $datos);
         if (is_numeric($request->dinero)) {
             $datos['queryDA'] = destinos_alojamientos::where('valorCU', '<', $request->dinero)->get();
             return view("presupuesto", $datos);
@@ -65,12 +63,16 @@ class planescontroller extends Controller
         }
     }
 
-    // public function show(recorridos $recorridos){
-    //     return view("show", compact('recorridos'));
-    // }
-
     public function show($recorridos)
     {
+        $query= DB::table('recorridos')
+            ->select("url")
+            ->where('url', '=', $recorridos)
+            ->get();
+
+        if(count($query) === 0){
+            return view("error");
+        }
 
         $array = [
             [7, '07:00 A.M.'],
@@ -105,14 +107,19 @@ class planescontroller extends Controller
         $query["hora"] = $time;
 
         $query["consulta"] = DB::table('recorridos')
-            ->select('id', 'titulo', 'descripcion', 'precio')
-            ->where('id', '=', $recorridos)
+            ->select('id', 'titulo', 'descripcion', 'precio', 'url')
+            ->where('url', '=', $recorridos)
             ->get();
         return view("show", $query);
     }
 
-    public function storeTours(Request $request)
+    public function storeTours(Request $request, $recorridos)
     {
+        $queryR= DB::table('recorridos')
+            ->select('id', 'titulo', 'precio', "url")
+            ->where('url', '=', $recorridos)
+            ->get();
+
         $varNombre = $request->TxtNombre;
         $varApellido = $request->TxtApellido;
         $varDocumento = $request->TxtDocumento;
@@ -154,7 +161,8 @@ class planescontroller extends Controller
                 if ($seguir) {
 
                     $var1 = intval($request->TxtCant_personas);
-                    $var2 = intval($request->TxtValor);
+                    // $var2 = intval($request->TxtValor);
+                    $var2 = intval($queryR[0] -> precio);
 
                     $precioF = $var1 * $var2;
 
@@ -181,9 +189,9 @@ class planescontroller extends Controller
 
                     $query->hora_reserva = $request->TxtHora;
                     $query->valorF = $precioF;
-                    $query->id_recorrido = $request->TxtId;
-                    $query->titulo_recorrido = $request->TxtTitulo;
-                    $query->precio_recorrido = $request->TxtValor;
+                    $query->id_recorrido = $queryR[0] -> id;
+                    $query->titulo_recorrido = $queryR[0] -> titulo;
+                    $query->precio_recorrido = $queryR[0] -> precio;
                     $query->save();
 
                     return redirect('/planes')->with(['msg' => 'Reserva guardada correctamente', 'class' => 'alert-success']);
@@ -199,6 +207,15 @@ class planescontroller extends Controller
     }
 
     public function showPlanes($plan){
+        $query= DB::table('destinos_alojamientos')
+            ->select("url")
+            ->where('url', '=', $plan)
+            ->get();
+
+        if(count($query) === 0){
+            return view("error");
+        }
+
         $array = [
             [7, '07:00 A.M.'],
             [8, '08:00 A.M.'],
@@ -232,19 +249,26 @@ class planescontroller extends Controller
         $query["hora"] = $time;
 
         $query["consulta"] = DB::table('destinos_alojamientos')
-            ->select('id', 'titulo', 'descripcion', 'valorCU')
-            ->where('id', '=', $plan)
+            ->select('id', 'titulo', 'descripcion', 'valorCU', "url")
+            ->where('url', '=', $plan)
             ->get();
         return view("showPlanes", $query);
     }
 
-    public function storePlanes(Request $request){
+    public function storePlanes(Request $request, $recorridos){
+
+        $queryDA= DB::table('destinos_alojamientos')
+            ->select('id', 'titulo', 'valorCU', "url")
+            ->where('url', '=', $recorridos)
+            ->get();
+
         $varNombre = $request->TxtNombre;
         $varApellido = $request->TxtApellido;
         $varDocumento = $request->TxtDocumento;
         $varCantidad = $request->TxtCant_personas;
+        // $varTransporte = $request->TxtTransporte || "1";
         $varTransporte = $request->TxtTransporte;
-        $varDireccion = $request->TxtDireccion;
+        // $varSim = $request->TxtSim || "1";
         $varSim = $request->TxtSim;
         $varFecha = $request->TxtFecha;
         $varHora = $request ->TxtHora;
@@ -281,7 +305,8 @@ class planescontroller extends Controller
                 if ($seguir) {
 
                     $var1 = intval($request->TxtCant_personas);
-                    $var2 = intval($request->TxtValor);
+                    // $var2 = intval($request->TxtValor);
+                    $var2 = intval($queryDA[0] -> valorCU);
 
                     $precioF = $var1 * $var2;
 
@@ -309,9 +334,9 @@ class planescontroller extends Controller
 
                     $query->hora_reserva = $request->TxtHora;
                     $query->valorF = $precioF;
-                    $query->id_recorrido = $request->TxtId;
-                    $query->titulo_recorrido = $request->TxtTitulo;
-                    $query->precio_recorrido = $request->TxtValor;
+                    $query->id_recorrido = $queryDA[0] -> id;
+                    $query->titulo_recorrido = $queryDA[0] -> titulo;
+                    $query->precio_recorrido = $queryDA[0] -> valorCU;
                     $query->save();
 
                     return redirect('/planes')->with(['msg' => 'Reserva guardada correctamente', 'class' => 'alert-success']);
