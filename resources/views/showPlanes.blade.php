@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-4">
                     <div class="text-center">
-                        <form action="{{ url('/planes/show') }}" method="POST" style="max-width: 480px; margin: auto;">
+                        <form action="{{ url('/planes/'. $consulta[0] -> url) }}" method="POST" style="max-width: 480px; margin: auto;">
                             <input name="_token" type="hidden" value="{{ csrf_token() }}">
 
                             <h4 style="margin-bottom: 3%; margin-top:-4%;">Reserva ahora</h4>
@@ -30,28 +30,22 @@
                             <input type="text" id="TxtApellido" name="TxtApellido" class="form-control mb-2" placeholder="Apellido" required autofocus>
 
                             <label for="TxtDocumento" class="sr-only">Documento</label>
-                            <input type="number" id="TxtDocumento" name="TxtDocumento" class="form-control mb-2" placeholder="Documento" required autofocus>
+                            <input type="number" id="TxtDocumento" name="TxtDocumento" class="form-control mb-2" min="0" placeholder="Documento" required autofocus>
 
                             <label for="TxtCant_personas" class="sr-only">Cantidad de personas</label>
-                            <input type="number" id="TxtCant_personas" name="TxtCant_personas" class="form-control mb-2" placeholder="Cantidad de personas" required autofocus>
-
-                            <input type="hidden" name="TxtId" value={{ $consulta[0] -> id }}>
-                            <input type="hidden" name="TxtTitulo" value={{ $consulta[0] -> titulo }}>
-                            <input type="hidden" name="TxtValor" value={{ $consulta[0] -> valorCU }}>
+                            <input type="number" id="TxtCant_personas" name="TxtCant_personas" class="form-control mb-2" min="0" placeholder="Cantidad de personas" required autofocus>
 
                             <select class="form-select mb-2" aria-label="Default select example" name="TxtTransporte" id="select" onchange="abs()">
-                                <option value="" selected>Plan transporte</option>
                                 <option value="0">Con transporte</option>
-                                <option value="1">Sin transporte</option>
+                                <option value="1" selected>Sin transporte</option>
                             </select>
 
                             <label for="TxtDireccion" class="sr-only">Direccion</label>
                             <input type="text" id="input" name="TxtDireccion" class="form-control mb-2" placeholder="Direccion" required autofocus disabled>
 
                             <select class="form-select mb-2" aria-label="Default select example" name="TxtSim">
-                                <option value="" selected>Plan sim-card</option>
                                 <option value="0">Con sim-card</option>
-                                <option value="1">Sin sim-card</option>
+                                <option value="1" selected>Sin sim-card</option>
                             </select>
 
                             <input type="text" id="datepicker" name="TxtFecha" class="form-control mb-2" placeholder="Fecha" required autofocus onchange="handleDate()"/>

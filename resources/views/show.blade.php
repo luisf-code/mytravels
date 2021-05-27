@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-4">
                     <div class="text-center">
-                        <form action="{{ url('/planes/tours/show') }}" method="POST" style="max-width: 480px; margin: auto;">
+                        <form action="{{ url('/planes/tours/'. $consulta[0] -> url) }}" method="POST" style="max-width: 480px; margin: auto;">
                             <input name="_token" type="hidden" value="{{ csrf_token() }}">
 
                             <h4 style="margin-bottom: 3%; margin-top:-4%;">Reserva ahora</h4>
@@ -30,14 +30,10 @@
                             <input type="text" id="TxtApellido" name="TxtApellido" class="form-control mb-2" placeholder="Apellido" required autofocus>
 
                             <label for="TxtDocumento" class="sr-only">Documento</label>
-                            <input type="number" id="TxtDocumento" name="TxtDocumento" class="form-control mb-2" placeholder="Documento" required autofocus>
+                            <input type="number" id="TxtDocumento" name="TxtDocumento" class="form-control mb-2" min="0" placeholder="Documento" required autofocus>
 
                             <label for="TxtCant_personas" class="sr-only">Cantidad de personas</label>
-                            <input type="number" id="TxtCant_personas" name="TxtCant_personas" class="form-control mb-2" placeholder="Cantidad de personas" required autofocus>
-
-                            <input type="hidden" name="TxtId" value={{ $consulta[0] -> id }}>
-                            <input type="hidden" name="TxtTitulo" value={{ $consulta[0] -> titulo }}>
-                            <input type="hidden" name="TxtValor" value={{ $consulta[0] -> precio }}>
+                            <input type="number" id="TxtCant_personas" name="TxtCant_personas" class="form-control mb-2" min="0" placeholder="Cantidad de personas" required autofocus>
 
                             <!-- <select class="form-select mb-2" aria-label="Default select example" name="TxtSim">
                                 <option value="" selected>Plan sim-card</option>

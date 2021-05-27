@@ -23,7 +23,7 @@
                             <p>Desde</p>
                             <p>{{ $p -> valorCU }}</p>
                             <p>Por persona</p>
-                            <a href="{{ url('planes/'. $p -> id) }}" class="btn btn-primary">Ver plan</a>
+                            <a href="{{ url('planes/'. $p -> url) }}" class="btn btn-primary">Ver plan</a>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                     <div class="recorridos mt-2">
                         <h5><strong><i>{{ $qR -> id }}</i> {{ $qR -> titulo }}</h5>
                         <h5><strong>${{ $qR -> precio }}</strong></h5>
-                        <a href="{{ url('planes/tours/'. $qR -> id) }}" class="btn btn-success mb-2">Ver más</strong></a>
+                        <a href="{{ url('planes/tours/'. $qR -> url) }}" class="btn btn-success mb-2">Ver más</strong></a>
                     </div>
                 </div>
             @endforeach
