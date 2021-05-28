@@ -189,6 +189,7 @@ class planescontroller extends Controller
 
                     $query->hora_reserva = $request->TxtHora;
                     $query->valorF = $precioF;
+                    $query->tipo_plan = "Recorrido";
                     $query->id_recorrido = $queryR[0] -> id;
                     $query->titulo_recorrido = $queryR[0] -> titulo;
                     $query->precio_recorrido = $queryR[0] -> precio;
@@ -243,6 +244,7 @@ class planescontroller extends Controller
                 array_push($time, [$c[0], $c[1]]);
             endif;
         endforeach;
+
         if (count($time) == 0)
             $time = $array;
 
@@ -334,6 +336,7 @@ class planescontroller extends Controller
 
                     $query->hora_reserva = $request->TxtHora;
                     $query->valorF = $precioF;
+                    $query->tipo_plan = "Alojamiento";
                     $query->id_recorrido = $queryDA[0] -> id;
                     $query->titulo_recorrido = $queryDA[0] -> titulo;
                     $query->precio_recorrido = $queryDA[0] -> valorCU;

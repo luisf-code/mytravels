@@ -57,6 +57,10 @@
                                 @endforeach
                             </select>
 
+                            <!-- <input type="text" id="txtDate" name="txtDate" value="">
+
+                            <select name="txtTime" id="txtTime" class="form-control"></select> -->
+
                             <div class="mt-3">
                                 <button class="btn btn-lg btn-dark btn-block" style="color: #2980B9; font-weight: 900;">Reservar</button>
                             </div>
