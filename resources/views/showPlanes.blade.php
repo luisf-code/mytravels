@@ -48,18 +48,20 @@
                                 <option value="1" selected>Sin sim-card</option>
                             </select>
 
-                            <input type="text" id="datepicker" name="TxtFecha" class="form-control mb-2" placeholder="Fecha" required autofocus onchange="handleDate()"/>
+                            <!-- <input type="text" id="datepicker" name="TxtFecha" class="form-control mb-2" placeholder="Fecha" required autofocus onchange="handleDate()"/>
 
                             <select class="form-select mt-2" aria-label="Default select example" name="TxtHora">
                                 <option value="" selected>Hora de reserva</option>
                                 @foreach($hora AS $h)
                                     <option value={{ $h[0] }}>{{ $h[1] }}</option>
                                 @endforeach
-                            </select>
+                            </select> -->
 
-                            <!-- <input type="text" id="txtDate" name="txtDate" value="">
+                            <p style="font-size: 9px; text-align: left; color:red">Sim Cards por persona</p>
 
-                            <select name="txtTime" id="txtTime" class="form-control"></select> -->
+                            <input type="text" id="txtDate" name="txtDate" class="form-control mb-2" value="<?php echo date('Y-m-d')?>">
+
+                            <select name="txtTime" id="txtTime" class="form-control"></select>
 
                             <div class="mt-3">
                                 <button class="btn btn-lg btn-dark btn-block" style="color: #2980B9; font-weight: 900;">Reservar</button>
@@ -78,13 +80,5 @@
                 ? (INPUT.disabled = false)
                 : (INPUT.disabled = true);
         }
-
-        const $FECHA = document.querySelector("#datepicker");
-        const handleDate = () => {
-            // console.log($FECHA.value);
-            console.log("dnkajs");
-        };
-
-
     </script>
 @endSection

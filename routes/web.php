@@ -26,8 +26,6 @@ Route::get('/contacto', function () {
     return view('contacto');
 });
 
-Route::resource('/crud', 'App\Http\Controllers\Crud\crudcontroller');
-
 Route::post('/presupuesto', 'App\Http\Controllers\Sitio\planescontroller@PresupuestoController')->where(['dinero' => '[0-9]+']);
 
 Route::get('/crud/numerico/{url}', 'App\Http\Controllers\Crud\crudcontroller@numerico')->where(['url' => '[0-9]+']); //url es dinamica, le dije que solo recibe valores númericos ahí con ese where
@@ -101,3 +99,26 @@ function getUrl($str = '')
 
     return $url_titulo;
 }
+
+Route::get('logout', 'App\Http\Controllers\Crud\LoginController@logout');
+
+Route::post('login', 'App\Http\Controllers\Crud\LoginController@login');
+Route::get('login', 'App\Http\Controllers\Crud\LoginController@loginForm');
+
+Route::post('register', 'App\Http\Controllers\Crud\LoginController@register');
+Route::get('register', 'App\Http\Controllers\Crud\LoginController@registerForm');
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::post('upload', 'App\Http\Controllers\Crud\LoginController@uploadFile');
+    Route::get('upload', 'App\Http\Controllers\Crud\LoginController@uploadForm');
+
+    Route::get('dashboard', 'App\Http\Controllers\Crud\LoginController@dashboard');
+
+    Route::resource('/crud', 'App\Http\Controllers\Crud\crudcontroller');
+
+    Route::resource('/recorridos-crud', 'App\Http\Controllers\Crud\recorridosCrudController');
+
+    Route::resource('/destinosAlojamientos-crud', 'App\Http\Controllers\Crud\destiosAlojamientosCrudController');
+
+});
