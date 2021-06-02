@@ -33,8 +33,11 @@
                 <a class="nav__items nav__items--footer"href="{{url('/')}}">Inicio</a>
                 <a class="nav__items nav__items--footer"href="{{url('/lugares')}}">Lugares</a>
                 <a class="nav__items nav__items--footer"href="{{url('/planes')}}">Planes</a>
-                <a class="nav__items nav__items--footer"href="{{url('/contacto')}}">Contacto</a>
+                <!-- <a class="nav__items nav__items--footer"href="{{url('/contacto')}}">Contacto</a> -->
                 <a class="nav__items nav__items--footer"href="{{ '/crud','App\Http\Controllers\Crud\crudcontroller' }}">CRUD</a>
+                <a class="nav__items nav__items--footer"href="{{ '/recorridos-crud', 'App\Http\Controllers\Crud\recorridosCrudController' }}">CRUD Recorridos</a>
+                <a class="nav__items nav__items--footer"href="{{ '/destinosAlojamientos-crud', 'App\Http\Controllers\Crud\destiosAlojamientosCrudController' }}">CRUD DestiAloja</a>
+
             </nav>
 
             <section class="footer__contact">
@@ -58,7 +61,8 @@
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://kit.fontawesome.com/183b331691.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>´
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="/js/lightpick.js"></script>
     <script src="/js/index.js"></script>
 </body>

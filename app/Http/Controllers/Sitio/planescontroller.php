@@ -187,7 +187,7 @@ class planescontroller extends Controller
                         $query->plan_sim = 0;
                     }
 
-                    $query->hora_reserva = $request->TxtHora;
+                    $query->hora_reserva = $request->txtTime;
                     $query->valorF = $precioF;
                     $query->tipo_plan = "Recorrido";
                     $query->id_recorrido = $queryR[0] -> id;
@@ -334,7 +334,7 @@ class planescontroller extends Controller
                         $query->plan_sim = 0;
                     }
 
-                    $query->hora_reserva = $request->TxtHora;
+                    $query->hora_reserva = $request->txtTime;
                     $query->valorF = $precioF;
                     $query->tipo_plan = "Alojamiento";
                     $query->id_recorrido = $queryDA[0] -> id;

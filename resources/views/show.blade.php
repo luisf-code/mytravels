@@ -41,12 +41,16 @@
                                 <option value="1">Sin sim-card</option>
                             </select> -->
 
-                            <select class="form-select" aria-label="Default select example" name="TxtHora">
+                            <!-- <select class="form-select" aria-label="Default select example" name="TxtHora">
                                 <option value="" selected>Hora de reserva</option>
                                 @foreach($hora AS $h)
                                     <option value={{ $h[0] }}>{{ $h[1] }}</option>
                                 @endforeach
-                            </select>
+                            </select> -->
+
+                            <input type="text" id="txtDate" name="txtDate" class="form-control mb-2" value="<?php echo date('Y-m-d')?>">
+
+                            <select name="txtTime" id="txtTime" class="form-control"></select>
 
                             <div class="mt-3">
                                 <button class="btn btn-lg btn-dark btn-block" style="color: var(--color-primary); font-weight: 900;">Reservar</button>

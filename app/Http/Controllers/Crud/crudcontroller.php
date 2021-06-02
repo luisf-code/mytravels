@@ -16,9 +16,9 @@ class crudcontroller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {     
+    {
         $data['query'] = destinos::get();
-        return view('crud.listar', $data);        
+        return view('crud.listar', $data);
     }
 
     /**
@@ -45,7 +45,7 @@ class crudcontroller extends Controller
         $query -> titulo = $request ->txtdestinos;
         $query -> url = $url;
         $query -> save();
-        
+
         return redirect('/crud')->with(['msg' => 'Registro creado correctamente', 'class' => 'alert-success']);
     }
 
@@ -57,7 +57,8 @@ class crudcontroller extends Controller
      */
     public function show($id)
     {
-        //
+        return view("Crud.show");
+
     }
 
     /**
@@ -85,8 +86,8 @@ class crudcontroller extends Controller
         $query = destinos::find( $id );
         $query -> titulo = $request ->txtdestinos;
         $query -> url = $url;
-        $query -> update();  
-        
+        $query -> update();
+
         return redirect('/crud')->with(['msg' => 'Registro actualizado correctamente', 'class' => 'alert-success']);
     }
 
@@ -109,7 +110,7 @@ class crudcontroller extends Controller
             return redirect('/crud')->with(['msg' => 'Ha ocurrido un error al eliminar el registro, inténtelo de nuevo', 'class' => 'alert-danger']);
             //return redirect('/crud')->with(['msg' => 'Ha ocurrido un error al eliminar el registro, inténtelo de nuevo '.$ex ->getMessage(), 'class' => 'alert-danger']); --> muestra la ubicación del error
         }
-        
+
     }
 
     private static function getUrl($str = '')
@@ -130,12 +131,12 @@ class crudcontroller extends Controller
 
     public function numerico ( $url = 0)
     {
-        if($url != 0) 
+        if($url != 0)
             return $url;
         else
             return;
         //ese if else, es una validación para sanetizar el código y que no ingresen datos vacios
-        //return 'Método númerico';        
+        //return 'Método númerico';
     }
 
     public function encrypt1( )
@@ -148,11 +149,11 @@ class crudcontroller extends Controller
 	{
 		$data = '';
 		if( $str != '' ):
-			$ciphering = "AES-128-CBC"; 
-			$iv_length = openssl_cipher_iv_length($ciphering); 
-			$options = 0; 
+			$ciphering = "AES-128-CBC";
+			$iv_length = openssl_cipher_iv_length($ciphering);
+			$options = 0;
 
-			$encryption_iv = '1234567891011121'; 
+			$encryption_iv = '1234567891011121';
 			$data = openssl_encrypt($str, $ciphering, $this->token(), $options, $encryption_iv);
             $data = str_replace( '/','___',$data );
             $data = str_replace( '+','---',$data );
@@ -163,7 +164,7 @@ class crudcontroller extends Controller
     public function decrypt1()
     {
         $str = '';
-        return $this -> decrypt ( $str );   
+        return $this -> decrypt ( $str );
     }
 
     public function decrypt( $str = '')
@@ -177,7 +178,7 @@ class crudcontroller extends Controller
             $data = str_replace( '___','/',$str );
             $data = str_replace( '---','+',$data );
             $data = openssl_decrypt ($data, $ciphering, $this->token(), $options, $decryption_iv);
-        endif;    
+        endif;
         return $data;
     }
 
