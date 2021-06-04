@@ -125,11 +125,11 @@ class planescontroller extends Controller
         $varDocumento = $request->TxtDocumento;
         $varCantidad = $request->TxtCant_personas;
         $varTransporte = $request->TxtTransporte;
-        $varDireccion = $request->TxtDireccion;
         $varSim = $request->TxtSim;
+        $varFecha = $request->txtDate;
         $varHora = $request ->TxtHora;
 
-        if (isset($varNombre) and isset($varApellido) and isset($varDocumento) and isset($varCantidad) AND isset($varHora)) {
+        if (isset($varNombre) and isset($varApellido) and isset($varDocumento) and isset($varCantidad) AND isset($varHora) AND isset($varFecha)) {
             if (is_numeric($request->TxtDocumento) and is_numeric($request->TxtCant_personas)) {
 
                 $fecha = date('h a', time());
@@ -187,6 +187,7 @@ class planescontroller extends Controller
                         $query->plan_sim = 0;
                     }
 
+                    $query->fecha_reserva = $request->txtDate;
                     $query->hora_reserva = $request->txtTime;
                     $query->valorF = $precioF;
                     $query->tipo_plan = "Recorrido";
@@ -272,8 +273,8 @@ class planescontroller extends Controller
         $varTransporte = $request->TxtTransporte;
         // $varSim = $request->TxtSim || "1";
         $varSim = $request->TxtSim;
-        $varFecha = $request->TxtFecha;
-        $varHora = $request ->TxtHora;
+        $varFecha = $request->txtDate;
+        $varHora = $request ->txtTime;
 
         if (isset($varNombre) and isset($varApellido) and isset($varDocumento) and isset($varCantidad) and isset($varTransporte) and isset($varSim) and isset($varFecha) and isset($varHora)) {
             if (is_numeric($request->TxtDocumento) and is_numeric($request->TxtCant_personas)) {
@@ -318,7 +319,7 @@ class planescontroller extends Controller
                     $query->documento = $request->TxtDocumento;
                     $query->cant_personas = $request->TxtCant_personas;
                     $query->direccion = $request->TxtDireccion;
-                    $query->fecha_reserva = $request->TxtFecha;
+                    $query->fecha_reserva = $request->txtDate;
 
                     if ($varTransporte == '0') {
                         $precioF += (50000 * $var1);

@@ -42,9 +42,19 @@ class crudcontroller extends Controller
     {
         $url = $this -> getUrl( $request ->txtdestinos );
         $query = new destinos();
-        $query -> titulo = $request ->txtdestinos;
-        $query -> url = $url;
-        $query -> save();
+
+        $varTitulo = $request ->txtdestinos;
+        $varDescripcion = $request ->txtDescripcion;
+
+        if(isset($varTitulo) and isset($varDescripcion)){
+            $query -> titulo = $request ->txtdestinos;
+            $query -> url = $url;
+            $query -> descripcion = $request ->txtDescripcion;
+            $query -> save();
+        }else{
+            return view("error");
+        }
+
 
         return redirect('/crud')->with(['msg' => 'Registro creado correctamente', 'class' => 'alert-success']);
     }
@@ -84,9 +94,18 @@ class crudcontroller extends Controller
     {
         $url = $this -> getUrl( $request ->txtdestinos );
         $query = destinos::find( $id );
-        $query -> titulo = $request ->txtdestinos;
-        $query -> url = $url;
-        $query -> update();
+
+        $varTitulo = $request ->txtdestinos;
+        $varDescripcion = $request ->txtDescripcion;
+
+        if(isset($varTitulo) and isset($varDescripcion)){
+            $query -> titulo = $request ->txtdestinos;
+            $query -> url = $url;
+            $query -> descripcion = $request ->txtDescripcion;
+            $query -> update();
+        }else{
+            return view("error");
+        }
 
         return redirect('/crud')->with(['msg' => 'Registro actualizado correctamente', 'class' => 'alert-success']);
     }

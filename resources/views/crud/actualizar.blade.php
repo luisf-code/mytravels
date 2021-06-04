@@ -7,12 +7,14 @@
             @method('PUT')
             <div class="mb-3">
                 <div class="col-6">
-                    <label for="txtdestinos" class="form-label" style="font-weight: 700;" >Nuevo destino</label>
+                    <label for="txtdestinos" class="form-label mt-2" style="font-weight: 700; margin-bottom: 2px;" >Nuevo destino</label>
                     <input type="text" class="form-control" id="txtdestinos" name="txtdestinos" placeholder="Ingrese un nuevo destino" value="{{ $query -> titulo }}">
-                </div>                
+                    <label for="txtDescripcion" class="form-label mt-2" style="font-weight: 700; margin-bottom: 2px;" >Descripcion</label>
+                    <input type="text" class="form-control" id="txtDescripcion" name="txtDescripcion" placeholder="Ingresa una descripcion" value="{{ $query -> descripcion }}">
+                </div>
             </div>
             <button type="submit" class="btn btn-secondary">Actualizar</button>
     </form>
 </div>
-    
+
 @endSection
