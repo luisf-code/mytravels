@@ -28,8 +28,14 @@
                     <td>{{ $d -> id }}</td>
                     <td>{{ $d -> titulo }}</td>
                     <td>{{ $d -> valorCU }}</td>
-                    <td><a href="{{ url('destinosAlojamientos-crud/'.$d -> id) }}" style="text-decoration: none;">Ver</a></td>
-                    <td><a href="{{ url('destinosAlojamientos-crud/'.$d -> id.'/edit') }}" style="text-decoration: none;">Actualizar</a></td>
+                    <!-- <td><a href="{{ url('destinosAlojamientos-crud/'.$d -> id) }}" style="text-decoration: none;">Ver</a></td> -->
+                    <td>
+                        <button onclick="hola({{$d}})" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            ver
+                        </button>
+                    </td>
+                    <!-- <td><a href="{{ url('destinosAlojamientos-crud/'.$d -> id.'/edit') }}" style="text-decoration: none;">Actualizar</a></td> -->
+                    <td><button type="submit" class="btn btn-secondary"><a href="{{ url('destinosAlojamientos-crud/'.$d -> id.'/edit') }}" style="text-decoration: none; color: white;">Actualizar</a></button></td>
                     <td>
                         <form method="POST" action="{{ url('destinosAlojamientos-crud/'.$d -> id) }}">
                             @csrf
@@ -40,8 +46,46 @@
                 </tr>
             </tbody>
             @endforeach
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <!-- <b id="id"></b> -->
+                            <div class="text-center">
+                                <img src="../../.././img/p4.jpeg" alt="hola">
+                            </div>
+                            <br>
+                            <p id="descripcion"></p>
+                            <b id="valorCU"></b>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
         </table>
-
     </div>
+
+    <script>
+        function hola(params){
+            const $TITULO = document.querySelector("#staticBackdropLabel")
+            // const $ID = document.querySelector("#id")
+            const $DESCRIPCION = document.querySelector("#descripcion")
+            const $VALORCU = document.querySelector("#valorCU")
+
+            $TITULO.textContent = params.titulo;
+            // $ID.textContent = params.id
+            $DESCRIPCION.textContent= params.descripcion
+            $VALORCU.textContent= params.valorCU
+        }
+    </script>
 
 @endSection
