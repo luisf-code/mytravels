@@ -41,19 +41,6 @@
         </div>
     </div>
     <div>
-
-        <!-- @foreach($query AS $q)
-                    <p>{{ $q -> id." ".$q -> titulo }}</p>
-                @endforeach -->
-
-        <!-- @foreach($queryDA AS $q)
-        <p>{{ $q -> id." ".$q -> titulo." ".$q -> valorCU }}</p>
-        @endforeach
-        <br> -->
-        <!-- @foreach($queryTA AS $q)
-                    <p>{{ $q -> id." ".$q -> titulo }}</p>
-        @endforeach -->
-
         <br>
         <h2>Testimonios</h2>
         <div class="row">

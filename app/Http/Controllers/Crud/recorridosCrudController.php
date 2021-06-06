@@ -74,7 +74,24 @@ class recorridosCrudController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = DB::table( 'recorridos' )
+        -> select ( "bloqueo" )
+        -> where ("id", "=", $id )
+        -> get();
+
+        $bloqueo = intval($data[0] -> bloqueo);
+
+        if($bloqueo === 0) {
+            DB::table('recorridos')
+            ->where('id', "=", $id)
+            ->update(['bloqueo' => 1]);
+            return redirect('/recorridos-crud')->with(['msg' => 'Registro bloqueado correctamente', 'class' => 'alert-success']);
+        } else {
+            DB::table('recorridos')
+            ->where('id', "=", $id)
+            ->update(['bloqueo' => 0]);
+            return redirect('/recorridos-crud')->with(['msg' => 'Registro desbloqueado correctamente', 'class' => 'alert-success']);
+        }
     }
 
     /**
@@ -88,14 +105,6 @@ class recorridosCrudController extends Controller
         $data["destiAloja"] = DB::table( 'destinos_alojamientos' )
                 -> select ( 'id', 'titulo' )
                 -> get();
-
-        // $data["titulo"] = DB::table( 'recorridos' )
-        //         ->select(
-        //                     'recorridos.idDestinos_Alojamientos AS id ',
-        //                     'destinos_alojamientos.titulo AS titulo'
-        //                 )
-        //         ->join('destinos_alojamientos', 'recorridos.idDestinos_Alojamientos', '=', "destinos_alojamientos.id")
-        //         ->get();
 
         $data["titulo"] = DB::table( 'recorridos' )
                 -> select ( 'id', 'titulo', "idDestinos_Alojamientos" )

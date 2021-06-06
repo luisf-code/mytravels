@@ -269,9 +269,7 @@ class planescontroller extends Controller
         $varApellido = $request->TxtApellido;
         $varDocumento = $request->TxtDocumento;
         $varCantidad = $request->TxtCant_personas;
-        // $varTransporte = $request->TxtTransporte || "1";
         $varTransporte = $request->TxtTransporte;
-        // $varSim = $request->TxtSim || "1";
         $varSim = $request->TxtSim;
         $varFecha = $request->txtDate;
         $varHora = $request ->txtTime;
@@ -308,7 +306,6 @@ class planescontroller extends Controller
                 if ($seguir) {
 
                     $var1 = intval($request->TxtCant_personas);
-                    // $var2 = intval($request->TxtValor);
                     $var2 = intval($queryDA[0] -> valorCU);
 
                     $precioF = $var1 * $var2;

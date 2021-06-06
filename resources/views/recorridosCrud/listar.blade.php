@@ -18,8 +18,6 @@
                     <th width="20%" style="font-weight: 900; font-size: larger;">Id</th>
                     <th width="20%" style="font-weight: 900; font-size: larger;">Titulo</th>
                     <th width="20%" style="font-weight: 900; font-size: larger;">Precio</th>
-                    <th width="20%">&nbsp;</th>
-                    <th width="20%">&nbsp;</th>
                 </tr>
             </thead>
             @foreach( $query AS $d)
@@ -28,13 +26,29 @@
                     <td>{{ $d -> id }}</td>
                     <td>{{ $d -> titulo }}</td>
                     <td>{{ $d -> precio }}</td>
-                    <!-- <td><a href="{{ url('recorridos-crud/'.$d -> id) }}" style="text-decoration: none;">Ver</a></td> -->
+                    @if($d -> bloqueo == 0)
+                        <td>
+                        <a href="{{ url('recorridos-crud/'.$d -> id) }}">
+                            <button class="btn btn-warning">
+                                bloquear
+                            </button>
+                        </a>
+                    </td>
+                    @endif
+                    @if($d -> bloqueo == 1)
+                        <td>
+                        <a href="{{ url('recorridos-crud/'.$d -> id) }}">
+                            <button class="btn btn-dark">
+                                desbloquear
+                            </button>
+                        </a>
+                    </td>
+                    @endif
                     <td>
                         <button onclick="hola({{$d}})" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                             ver
                         </button>
                     </td>
-                    <!-- <td><a href="{{ url('recorridos-crud/'.$d -> id.'/edit') }}" style="text-decoration: none;">Actualizar</a></td> -->
                     <td><button type="submit" class="btn btn-secondary"><a href="{{ url('recorridos-crud/'.$d -> id.'/edit') }}" style="text-decoration: none; color: white;">Actualizar</a></button></td>
                     <td>
                         <form method="POST" action="{{ url('recorridos-crud/'.$d -> id) }}">
@@ -56,7 +70,6 @@
                     </div>
                     <div class="modal-body">
                         <div>
-                            <!-- <b id="id"></b> -->
                             <div class="text-center">
                                 <img src="../../.././img/p3.jpeg" alt="hola">
                             </div>
@@ -77,14 +90,12 @@
     <script>
         function hola(params){
             const $TITULO = document.querySelector("#staticBackdropLabel")
-            // const $ID = document.querySelector("#id")
             const $DESCRIPCION = document.querySelector("#descripcion")
             const $PRECIO = document.querySelector("#precio")
 
             $TITULO.textContent = params.titulo;
-            // $ID.textContent = params.id
             $DESCRIPCION.textContent= params.descripcion
-            $PRECIO.textContent= params.precio
+            $PRECIO.textContent= `$ ${params.precio}`
         }
     </script>
 

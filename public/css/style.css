@@ -118,17 +118,33 @@
 }
 
 /* presupuesto */
-.container__grid{
-    margin-top: 2em;
+
+.container__grid {
+    width: 90%;
+    max-width: 1200%;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3,30%);
-    justify-content: space-between;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.item__grid {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 15);
+    min-height: 480px;
+    margin-bottom: 1em;
+    margin-right: 1em;
+    padding: 1em;
+    position: relative;
+}
+
+.optiones-recorridos {
     text-align: center;
 }
 
-.item__grid{
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 15);
-    margin-bottom: 1em;
+.optiones-recorridos .hola{
+    position: absolute;
+    bottom:1em;
+    width: 100%;
+    left: -0%;
 }
 
 #recorrido{
@@ -166,11 +182,20 @@
 }
 
 /*Recorridos*/
+.recorridos {
+    text-align: center;
+}
+
 .recorridos a {
     text-decoration: none;
 }
 .recorrido-img{
     margin-top: 3%;
+    margin: auto;
+}
+
+.recorrido-img img{
+    width: 100%;
 }
 
 .show h2{
