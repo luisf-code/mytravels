@@ -35,12 +35,6 @@
                             <label for="TxtCant_personas" class="sr-only">Cantidad de personas</label>
                             <input type="number" id="TxtCant_personas" name="TxtCant_personas" class="form-control mb-2" min="0" placeholder="Cantidad de personas" required autofocus>
 
-                            <!-- <select class="form-select mb-2" aria-label="Default select example" name="TxtSim">
-                                <option value="" selected>Plan sim-card</option>
-                                <option value="0">Con sim-card</option>
-                                <option value="1">Sin sim-card</option>
-                            </select> -->
-
                             <!-- <select class="form-select" aria-label="Default select example" name="TxtHora">
                                 <option value="" selected>Hora de reserva</option>
                                 @foreach($hora AS $h)

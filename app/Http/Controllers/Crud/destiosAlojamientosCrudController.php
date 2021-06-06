@@ -81,7 +81,24 @@ class destiosAlojamientosCrudController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = DB::table( 'destinos_alojamientos' )
+                -> select ( "bloqueo" )
+                -> where ("id", "=", $id )
+                -> get();
+
+        $bloqueo = intval($data[0] -> bloqueo);
+
+        if($bloqueo === 0) {
+            DB::table('destinos_alojamientos')
+            ->where('id', "=", $id)
+            ->update(['bloqueo' => 1]);
+            return redirect('/destinosAlojamientos-crud')->with(['msg' => 'Registro bloqueado correctamente', 'class' => 'alert-success']);
+        } else {
+            DB::table('destinos_alojamientos')
+            ->where('id', "=", $id)
+            ->update(['bloqueo' => 0]);
+            return redirect('/destinosAlojamientos-crud')->with(['msg' => 'Registro desbloqueado correctamente', 'class' => 'alert-success']);
+        }
     }
 
     /**

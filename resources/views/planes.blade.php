@@ -12,74 +12,29 @@
     <h2>Planes</h2>
     <h5>Descubre tu plan ideal</h5>
     <div>
-        <div class="row">
-                @foreach($queryDA AS $p)
-                <div class="col-3">
-                    <div class="card mt-3" style="width: 18rem;">
-                        <img src="../../.././img/p1.jpeg" class="card-img-top" alt="planes turisicos">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $p -> titulo }}</h5>
-                            <!-- <p class="card-text">{{ $p -> descripcion }}</p> -->
-                            <p>Desde</p>
-                            <p>{{ $p -> valorCU }}</p>
-                            <p>Por persona</p>
+        <div class="container__grid">
+            @foreach($queryDA AS $p)
+                <div class="item__grid ">
+                    <div class="recorrido-img">
+                        <img src="../../.././img/p1.jpeg" alt="planes turisicos">
+                    </div>
+                    <div class="recorridos mt-2">
+                        <h5 style="margin-bottom: 15px;"><b>{{ $p -> titulo }}</b></h5>
+                        <p><b>Desde: ${{ $p -> valorCU }}</b></p>
+                        <p style="margin-top: -9px;"><b>Por persona</b></p>
+                        @if($p -> bloqueo == 0)
                             <a href="{{ url('planes/'. $p -> url) }}" class="btn btn-primary">Ver plan</a>
-                        </div>
+                        @endif
+                        @if($p -> bloqueo == 1)
+                            <div class="alert alert-danger">
+                                <h6>Lo sentimos, de momento no contamos con este plan.</h6>
+                            </div>
+                        @endif
                     </div>
                 </div>
-                @endforeach
+            @endforeach
         </div>
     </div>
-
-
-
-
-
-    <!-- <div>
-        <p></p>
-        <div class="row">
-            @foreach($planes AS $p)
-            <div class="col-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="{{ $p[0] }}" class="card-img-top" alt="planes turisicos">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $p[1] }}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content to build on the card title and make up the bulk of the card's.</p>
-                        <p>Desde</p>
-                        <p>{{$p[2]}}</p>
-                        <p>Por persona</p>
-                        <a href="#" class="btn btn-primary">Ver plan</a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div> -->
-    <!-- <br>
-    <br>
-    <h3>Recorridos</h3>
-    <h6>Escoge el recorrido que más te guste</h6>
-    <div>
-        <p></p>
-        <div class="row">
-            @foreach($queryDA AS $qDA)
-                <div class="col-3">
-                    <div class="card mt-4" style="width: 18rem;" id="recorrido">
-                        <img src="../../.././img/destino_alojamiento.jpeg" class="card-img-top" alt="recorridos turisicos">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $qDA -> titulo }}</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content to build on the card title and make up the bulk of the card's.</p>
-                            <p>Desde</p>
-                            <p>{{ $qDA -> valorCU }}</p>
-                            <p>Por persona</p>
-                            <a href="#" class="btn btn-info">Ver recorrido</a>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div> -->
-
     <br>
     <div>
         <h3>Tours</h3>
@@ -91,9 +46,18 @@
                         <img src="../../.././img/show.jpeg" alt="recorrido">
                     </div>
                     <div class="recorridos mt-2">
-                        <h5><strong><i>{{ $qR -> id }}</i> {{ $qR -> titulo }}</h5>
+                        <h5><strong><i>{{ $qR -> id }}</i> {{ $qR -> titulo }}</strong></h5>
                         <h5><strong>${{ $qR -> precio }}</strong></h5>
-                        <a href="{{ url('planes/tours/'. $qR -> url) }}" class="btn btn-success mb-2">Ver más</strong></a>
+                        <div class="optiones-recorridos">
+                            @if($qR -> bloqueo == 0)
+                                <a href="{{ url('planes/tours/'. $qR -> url) }}" class="btn btn-success mb-2 hola">Ver más</strong></a>
+                            @endif
+                            @if($qR -> bloqueo == 1)
+                            <div class="alert alert-danger">
+                                <p>Lo sentimos, este recorrido </br> no esta disponible de momento. </p>
+                            </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             @endforeach

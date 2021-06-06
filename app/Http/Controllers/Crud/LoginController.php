@@ -79,11 +79,22 @@ class LoginController extends Controller
     public function register( Request $request )
     {
         $query = new User();
-        $query -> email = $request -> input('email');
-        $query -> name = $request -> input('name');
-        $query -> password = Hash::make( $request -> input('password') );
-        $query -> save();
-        return redirect('/login')->with(['msg' => 'Registro creado correctamente']);
+
+        $varEmail = $request -> input('email');
+        $varName = $request -> input('name');
+        $varPassword = $request -> input('password');
+
+        if(isset($varEmail) and isset($varName) and isset($varPassword)){
+            $query -> email = $request -> input('email');
+            $query -> name = $request -> input('name');
+            $query -> password = Hash::make( $request -> input('password') );
+            $query -> save();
+            return redirect('/login')->with(['msg' => 'Registro creado correctamente']);
+        }else{
+            return view('error');
+        }
+
+
     }
     public static function registerForm(  )
     {
