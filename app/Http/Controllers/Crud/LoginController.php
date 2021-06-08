@@ -39,10 +39,10 @@ class LoginController extends Controller
     public function dashboard()
     {
         $html = '';
-        $html .= '<h1>Bienvenid@ '.Auth::user() -> email.'</h1>';
-        // $html .= '<h1>Bienvenid@ '.Auth::user() -> name.'</h1>'; -> mostras los campos que queramos de la base de datos
+        // $html .= '<h1>Bienvenid@ '.Auth::user() -> email.'</h1>';-> mostras los campos que queramos de la base de datos
+        $html .= '<h1>Bienvenid@ '.Auth::user() -> name.'</h1>';
         $html .= '<br><a href="'.url('logout').'">Salir</a>';
-        $html .= '<br><a href="'.url('upload').'">Subir archivos</a>';
+        // $html .= '<br><a href="'.url('upload').'">Subir archivos</a>';
 
         return $html;
     }

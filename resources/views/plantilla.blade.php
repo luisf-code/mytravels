@@ -19,7 +19,7 @@
                 <a href="{{url('/lugares')}}" class="nav__items">Lugares</a>
                 <a href="{{url('/planes')}}" class="nav__items">Planes</a>
                 <!-- <a href="{{url('/contacto')}}" class="nav__items">Contacto</a> -->
-                <a href="{{url('/login')}}" class="nav__items">Login</a>
+                {{-- <a href="{{url('/login')}}" class="nav__items">Login</a> --}}
             </nav>
         <!-- </div> -->
     </header>
@@ -35,7 +35,7 @@
                 <a class="nav__items nav__items--footer"href="{{url('/lugares')}}">Lugares</a>
                 <a class="nav__items nav__items--footer"href="{{url('/planes')}}">Planes</a>
                 <!-- <a class="nav__items nav__items--footer"href="{{url('/contacto')}}">Contacto</a> -->
-                <a class="nav__items nav__items--footer"href="{{ '/crud','App\Http\Controllers\Crud\crudcontroller' }}">CRUD</a>
+                <!-- <a class="nav__items nav__items--footer"href="{{ '/crud','App\Http\Controllers\Crud\crudcontroller' }}">CRUD</a> -->
                 <a class="nav__items nav__items--footer"href="{{ '/recorridos-crud', 'App\Http\Controllers\Crud\recorridosCrudController' }}">CRUD Recorridos</a>
                 <a class="nav__items nav__items--footer"href="{{ '/destinosAlojamientos-crud', 'App\Http\Controllers\Crud\destiosAlojamientosCrudController' }}">CRUD DestiAloja</a>
 

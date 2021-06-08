@@ -8,7 +8,7 @@
             {{ session('msg') }}
         </div>
         @endif
-
+        <a href="{{url('/dashboard')}}" class="btn btn-primary mb-2">Panel de control</a>
         <a href="{{ url('destinosAlojamientos-crud/create') }}" class="btn btn-primary mb-2">Crear un nuevo plan</a>
         <br>
         <br>
