@@ -107,7 +107,7 @@ class planescontroller extends Controller
         $query["hora"] = $time;
 
         $query["consulta"] = DB::table('recorridos')
-            ->select('id', 'titulo', 'descripcion', 'precio', 'url')
+            ->select('id', 'titulo', 'descripcion', 'precio', 'url', "bloqueo")
             ->where('url', '=', $recorridos)
             ->get();
         return view("show", $query);
@@ -252,7 +252,7 @@ class planescontroller extends Controller
         $query["hora"] = $time;
 
         $query["consulta"] = DB::table('destinos_alojamientos')
-            ->select('id', 'titulo', 'descripcion', 'valorCU', "url")
+            ->select('id', 'titulo', 'descripcion', 'valorCU', "url", "bloqueo")
             ->where('url', '=', $plan)
             ->get();
         return view("showPlanes", $query);

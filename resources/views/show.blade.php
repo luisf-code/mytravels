@@ -46,9 +46,16 @@
 
                             <select name="txtTime" id="txtTime" class="form-control"></select>
 
+                            @if($consulta[0] -> bloqueo == 0)
                             <div class="mt-3">
                                 <button class="btn btn-lg btn-dark btn-block" style="color: var(--color-primary); font-weight: 900;">Reservar</button>
                             </div>
+                            @endif
+                            @if($consulta[0] -> bloqueo == 1)
+                            <div class="alert alert-danger mt-3">
+                                <p>Lo sentimos, este recorrido </br> no esta disponible de momento. </p>
+                            </div>
+                            @endif
                         </form>
                     </div>
                 </div>
