@@ -47,20 +47,18 @@
                                 <option value="1" selected>Sin sim-card</option>
                             </select>
 
-                            <!-- <input type="text" id="datepicker" name="TxtFecha" class="form-control mb-2" placeholder="Fecha" required autofocus onchange="handleDate()"/>
+                            <p style="font-size: 9px; text-align: left; color:red; margin-left: 2px;">Sim Cards por persona</p>
 
-                            <select class="form-select mt-2" aria-label="Default select example" name="TxtHora">
+                            <input type="text" id="txtDate" name="txtDate" class="form-control mb-2" value="<?php echo date('Y-m-d')?>" placeholder="Fecha de reserva">
+
+                            <select class="form-select mt-2" aria-label="Default select example" name="txtTime">
                                 <option value="" selected>Hora de reserva</option>
                                 @foreach($hora AS $h)
                                     <option value={{ $h[0] }}>{{ $h[1] }}</option>
                                 @endforeach
-                            </select> -->
+                            </select>
 
-                            <p style="font-size: 9px; text-align: left; color:red">Sim Cards por persona</p>
-
-                            <input type="text" id="txtDate" name="txtDate" class="form-control mb-2" value="<?php echo date('Y-m-d')?>">
-
-                            <select name="txtTime" id="txtTime" class="form-control"></select>
+                            <!-- <select name="txtTime" id="txtTime" class="form-control"></select> --no se deja seleccionar una hora diferente a la que muestra por defecto - esto lo hizo el profesor-->
 
                             @if($consulta[0] -> bloqueo == 0)
                             <div class="mt-3">
@@ -68,9 +66,12 @@
                             </div>
                             @endif
                             @if($consulta[0] -> bloqueo == 1)
-                            <div class="alert alert-danger mt-3">
+                            <!-- <div class="alert alert-danger mt-3">
                                 <p>Lo sentimos, este plan </br> no esta disponible de momento. </p>
-                            </div>
+                            </div> -->
+                                <script>
+                                    window.location.replace('/planes');
+                                </script>
                             @endif
                         </form>
                     </div>

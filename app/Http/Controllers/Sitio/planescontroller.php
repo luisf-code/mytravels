@@ -107,7 +107,7 @@ class planescontroller extends Controller
         $query["hora"] = $time;
 
         $query["consulta"] = DB::table('recorridos')
-            ->select('id', 'titulo', 'descripcion', 'precio', 'url', "bloqueo")
+            ->select('id', 'imagen', 'titulo', 'descripcion', 'precio', 'url', "bloqueo")
             ->where('url', '=', $recorridos)
             ->get();
         return view("show", $query);
@@ -127,7 +127,7 @@ class planescontroller extends Controller
         $varTransporte = $request->TxtTransporte;
         $varSim = $request->TxtSim;
         $varFecha = $request->txtDate;
-        $varHora = $request ->TxtHora;
+        $varHora = $request ->txtTime;
 
         if (isset($varNombre) and isset($varApellido) and isset($varDocumento) and isset($varCantidad) AND isset($varHora) AND isset($varFecha)) {
             if (is_numeric($request->TxtDocumento) and is_numeric($request->TxtCant_personas)) {
@@ -161,7 +161,6 @@ class planescontroller extends Controller
                 if ($seguir) {
 
                     $var1 = intval($request->TxtCant_personas);
-                    // $var2 = intval($request->TxtValor);
                     $var2 = intval($queryR[0] -> precio);
 
                     $precioF = $var1 * $var2;

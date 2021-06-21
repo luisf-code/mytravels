@@ -22,7 +22,7 @@ class LoginController extends Controller
             $imgs .= '"'.$imgName.'",';
         endforeach;
 
-        // $query = new Planes(); guardar la informacion en la base de datos, aca irian los inputs de la base de datos
+        //  $query = new Planes(); guardar la informacion en la base de datos, aca irian los inputs de la base de datos
         // $query -> save();
 
         return redirect('/upload')->with(['msg' => 'Archivos subidos correctamente']);
@@ -42,7 +42,7 @@ class LoginController extends Controller
         // $html .= '<h1>Bienvenid@ '.Auth::user() -> email.'</h1>';-> mostras los campos que queramos de la base de datos
         $html .= '<h1>Bienvenid@ '.Auth::user() -> name.'</h1>';
         $html .= '<br><a href="'.url('logout').'">Salir</a>';
-        // $html .= '<br><a href="'.url('upload').'">Subir archivos</a>';
+        $html .= '<br><a href="'.url('upload').'">Subir archivos</a>';
 
         return $html;
     }

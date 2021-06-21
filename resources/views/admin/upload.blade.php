@@ -14,7 +14,7 @@ if(session('msg'))
                 @csrf
                 <div class="form-group">
                     <label">Imágenes</label>
-                    <input class="form-control" name="files[]" type="file" multiple accept="image/png, image/jpeg" >
+                    <input class="form-control" name="file[]" type="file" multiple accept="image/png, image/jpeg" >
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

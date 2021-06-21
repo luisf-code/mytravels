@@ -49,6 +49,13 @@ class recorridosCrudController extends Controller
         $varDescripcion = $request ->txtDescripcion;
         $varPrecio = $request ->txtPrecio;
         $varDestino = $request ->txtDestiAloja;
+        // $imagen = $request ->txtImagen;
+        // $imagen2 = $_FILES['txtImagen'];
+
+        // echo "The file ". htmlspecialchars( basename( $_FILES["txtImagen"]["name"])). " has been uploaded.";
+
+        // $target_file = $target_dir . basename($_FILES[$imagen]["name"]);
+        // dd(env('UPLOADFILE_PATH'),$imagen -> originalName);
 
         if(isset($varTitulo) and isset($varDescripcion) and isset($varPrecio) and isset($varDestino)){
 
@@ -57,6 +64,7 @@ class recorridosCrudController extends Controller
             $query -> descripcion = $request ->txtDescripcion;
             $query -> precio = $request ->txtPrecio;
             $query -> idDestinos_Alojamientos = $request ->txtDestiAloja;
+            $query -> bloqueo = 0;
             $query -> save();
 
         }else{
