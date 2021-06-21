@@ -18,7 +18,7 @@
                 <a href="{{url('/')}}" class="nav__items nav__items--cta">Inicio</a>
                 <a href="{{url('/lugares')}}" class="nav__items">Lugares</a>
                 <a href="{{url('/planes')}}" class="nav__items">Planes</a>
-                <!-- <a href="{{url('/contacto')}}" class="nav__items">Contacto</a> -->
+                <a href="{{url('/contacto')}}" class="nav__items">Contacto</a>
                 {{-- <a href="{{url('/login')}}" class="nav__items">Login</a> --}}
             </nav>
         <!-- </div> -->

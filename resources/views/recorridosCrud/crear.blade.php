@@ -2,7 +2,7 @@
 @section ("content")
 
 <div class="container">
-    <form action="{{ url('/recorridos-crud')}}" method="POST">
+    <form action="{{ url('/recorridos-crud')}}" method="POST" enctype="multipart/form-data">
             <input name="_token" type="hidden" value="{{ csrf_token() }}">
             <div class="mb-3">
                 <div class="col-6">
@@ -22,6 +22,12 @@
                             <option value={{ $destino -> id }}>{{ $destino -> titulo }}</option>
                         @endforeach
                     </select>
+
+                    <!-- <div class="form-group">
+                        <label">Imagen</label>
+                        <input class="form-control" name="txtImagen" type="file" accept="image/jpeg" >
+                    </div> -->
+
                 </div>
             </div>
             <button type="submit" class="btn btn-secondary">Crear</button>

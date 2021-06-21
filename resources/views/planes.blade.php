@@ -43,7 +43,8 @@
             @foreach($queryR AS $qR)
                 <div class="item__grid ">
                     <div class="recorrido-img">
-                        <img src="../../.././img/show.jpeg" alt="recorrido">
+                        <img src="../../.././img/show.jpeg" alt="recorridos">
+                        <!-- <img src='data:image/jpeg;base64,{{ $qR -> imagen }}' alt="recorrido"> mostrar la imagen que esta en base 64 en la base de datos -->
                     </div>
                     <div class="recorridos mt-2">
                         <h5><strong><i>{{ $qR -> id }}</i> {{ $qR -> titulo }}</strong></h5>

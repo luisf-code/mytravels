@@ -64,6 +64,7 @@ class destiosAlojamientosCrudController extends Controller
             $query -> url = $url;
             $query -> descripcion = $request ->txtDescripcion;
             $query -> valorCU = $request ->txtPrecio;
+            $query -> bloqueo = 0;
             $query -> save();
 
         }else{
